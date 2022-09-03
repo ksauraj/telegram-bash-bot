@@ -20,6 +20,15 @@ round() {
 	DECIMAL_POINT=$2
 	printf "%.${2:-$DECIMAL_POINT}f" "$FLOAT"
 }
+all_replace() {
+	TRIMMED=${RET_MSG_TEXT#.all_replace }
+	echo "${RET_REPLIED_MSG_TEXT}" > sed.txt
+	echo "sed -i "s/${TRIMMED}/g" sed.txt"
+	sed -i "s/${TRIMMED}/g" sed.txt
+	text=$(cat sed.txt)
+	tg --replymsg "$RET_CHAT_ID" "$RET_REPLIED_MSG_ID" "${text}"
+	rm sed.txt
+}
 calc() {
     TRIMMED="${RET_MSG_TEXT#.calc}"
     CALCED=$(echo "$TRIMMED" | bc -l 2>&1)
@@ -189,6 +198,7 @@ while true; do
 	case $RET_LOWERED_MSG_TEXT in
 
 	'/start'*) start | tee -a log ;;
+	'.all_replace'*) all_replace  | tee -a log ;;
 	'.calc'*) calc  | tee -a log ;;
 	'.iq'*) iq  | tee -a log ;;
 	'.info'*) info  | tee -a log ;;
