@@ -165,8 +165,16 @@ weath() {
 	fi
 }
 log() {
-	if [ "$MSGGER" = "$BOT_OWNER_ID" ]; then
+	if [ "$MSGGER" == "$BOT_OWNER_ID" ]; then
 		tg --replyfile "$RET_CHAT_ID" "$RET_MSG_ID" log
+	else
+		tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "Only owner can use this command."
+	fi
+}
+reset_log() {
+	if [ "$MSGGER" == "$BOT_OWNER_ID" ]; then
+		rm log > /dev/null 2>&1
+		tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "Log handler reset succesfully."
 	else
 		tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "Only owner can use this command."
 	fi
@@ -189,6 +197,7 @@ while true; do
 	'.replace'*) replace  | tee -a log ;;
 	'.weath'*) weath  | tee -a log ;;
 	'.log'*) log ;;
+	'.reset_log'*) reset_log ;;
 	esac
 
 	unset RET_MSG_TEXT RET_REPLIED_MSG_ID
