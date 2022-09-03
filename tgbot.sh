@@ -42,17 +42,17 @@ calc() {
 iq() {
 	if [[ $USERNAME == 'Ksauraj' ]]; then
 		iq=$(shuf -i 0-8 -n1)
-		iq=$(expr 180 - $iq)
+		iq=$(expr 180 - "$iq")
 		tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "Calculating your IQ, wait plox..."
 		tg --editmsg "$RET_CHAT_ID" "$SENT_MSG_ID" "@${USERNAME} calculated IQ Score is ${iq}."
 	else
 		tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "Calculating your IQ, wait plox..."
-		sha=$(echo ${FIRST_NAME} | sha1sum | grep -Eo "[[:digit:]]{2}" | head -n1)
-		md5=$(echo ${USERNAME} | md5sum | grep -Eo "[[:digit:]]{2}" | head -n1)
-		num1=$(expr ${sha} + ${md5} | head -n1)
+		sha=$(echo "${FIRST_NAME}" | sha1sum | grep -Eo "[[:digit:]]{2}" | head -n1)
+		md5=$(echo "${USERNAME}" | md5sum | grep -Eo "[[:digit:]]{2}" | head -n1)
+		num1=$(expr "${sha}" + "${md5}" | head -n1)
 		num2=$(shuf -i 0-5 -n1)
-		f=$(expr ${num1} - ${num2} )
-		iq=$(expr 180 - $f )
+		f=$(expr "${num1}" - "${num2}" )
+		iq=$(expr 180 - "$f" )
 		tg --editmsg "$RET_CHAT_ID" "$SENT_MSG_ID" "@${USERNAME} calculated IQ Score is ${iq}."
 	fi
 }
@@ -72,13 +72,13 @@ magisk() {
 [Latest canary]($CANARY)"
 }
 info() {
-	if [ ${RET_REPLIED_MSGGER_ID} != "null" ]; then
-		USERNAME=$(echo $USERNAME | sed 's/[`~!@#$%^&*()-_=+{}\|;:",<.>/?'"'"']/\\&/g')
-		FIRST_NAME=$( echo $FIRST_NAME | sed 's/[`~!@#$%^&*()-_=+{}\|;:",<.>/?'"'"']/\\&/g')
-		LAST_NAME=$(echo $LAST_NAME | sed 's/[`~!@#$%^&*()-_=+{}\|;:",<.>/?'"'"']/\\&/g')
-		RET_REPLIED_MSGGER_FIRST_NAME=$(echo $RET_REPLIED_MSGGER_FIRST_NAME | sed 's/[`~!@#$%^&*()-_=+{}\|;:",<.>/?'"'"']/\\&/g')
-		RET_REPLIED_MSGGER_LAST_NAME=$(echo $RET_REPLIED_MSGGER_LAST_NAME | sed 's/[`~!@#$%^&*()-_=+{}\|;:",<.>/?'"'"']/\\&/g')
-		RET_REPLIED_MSGGER_USERNAME=$(echo $RET_REPLIED_MSGGER_USERNAME | sed 's/[`~!@#$%^&*()-_=+{}\|;:",<.>/?'"'"']/\\&/g')
+	if [ "${RET_REPLIED_MSGGER_ID}" != "null" ]; then
+		USERNAME=$(echo "$USERNAME" | sed 's/[`~!@#$%^&*()-_=+{}\|;:",<.>/?'"'"']/\\&/g')
+		FIRST_NAME=$( echo "$FIRST_NAME" | sed 's/[`~!@#$%^&*()-_=+{}\|;:",<.>/?'"'"']/\\&/g')
+		LAST_NAME=$(echo "$LAST_NAME" | sed 's/[`~!@#$%^&*()-_=+{}\|;:",<.>/?'"'"']/\\&/g')
+		RET_REPLIED_MSGGER_FIRST_NAME=$(echo "$RET_REPLIED_MSGGER_FIRST_NAME" | sed 's/[`~!@#$%^&*()-_=+{}\|;:",<.>/?'"'"']/\\&/g')
+		RET_REPLIED_MSGGER_LAST_NAME=$(echo "$RET_REPLIED_MSGGER_LAST_NAME" | sed 's/[`~!@#$%^&*()-_=+{}\|;:",<.>/?'"'"']/\\&/g')
+		RET_REPLIED_MSGGER_USERNAME=$(echo "$RET_REPLIED_MSGGER_USERNAME" | sed 's/[`~!@#$%^&*()-_=+{}\|;:",<.>/?'"'"']/\\&/g')
 		tg --replymarkdownv2msg "$RET_CHAT_ID" "$RET_MSG_ID" "Chat ID \: \`${RET_CHAT_ID}\`
 Message ID \: \`${RET_MSG_ID}\`
 Chat Type \: \`${RET_CHAT_TYPE}\`
@@ -110,7 +110,7 @@ neo_fetch() {
 replace() {
 	TRIMMED=${RET_MSG_TEXT#.replace }
 	echo "${RET_REPLIED_MSG_TEXT}" > sed.txt
-	echo "sed -i "s/${TRIMMED}/" sed.txt"
+	echo "sed -i \"s/${TRIMMED}/\" sed.txt"
 	sed -i "s/${TRIMMED}/" sed.txt
 	text=$(cat sed.txt)
 	tg --replymsg "$RET_CHAT_ID" "$RET_REPLIED_MSG_ID" "${text}"
@@ -118,7 +118,7 @@ replace() {
 }
 weath() {
 	TRIMMED=${RET_MSG_TEXT#.weath }
-	char=$(echo ${TRIMMED} | tr -d '\n' | wc -c)
+	char=$(echo "${TRIMMED}" | tr -d '\n' | wc -c)
 	if [ "$char" == 0 ]; then
 		tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "Please provide argument bisi"
 	else
@@ -149,7 +149,7 @@ weath() {
 		day_2=$(echo "$RESULT" | jq '.forecasts[].day' | sed '2!d')
 		day_3=$(echo "$RESULT" | jq '.forecasts[].day' | sed '3!d')
 		weather_1=$(echo "$RESULT" | jq '.forecasts[].text' | sed '1!d')
-		echo "Showing Results for" ${city}"," ${region}"," ${country} > weath.txt
+		echo "Showing Results for ${city}, ${region}, ${country}" > weath.txt
 		echo "Timezone : ${timezone_id}" >> weath.txt
 		echo "Wind Speed : ${speed}km/h" >> weath.txt
 		echo "Humididty : ${humidity}%" >> weath.txt
