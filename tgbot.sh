@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#Clear terminal before starting
+#Clear & Clean terminal before starting
 clear
-
+rm log  > /dev/null 2>&1
 ## Sourcing stuffs (Our functions, extra functions ans aliases, etc)
 source util.sh
 source .token.sh
@@ -164,24 +164,31 @@ weath() {
 		rm weath.txt
 	fi
 }
-
+log() {
+	if [ "$MSGGER" = "$BOT_OWNER_ID" ]; then
+		tg --replyfile "$RET_CHAT_ID" "$RET_MSG_ID" log
+	else
+		tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "Only owner can use this command."
+	fi
+}
 ## While loop
 while true; do
 	# Refresh stuff
 	update
-	[ "$RET_MSG_TEXT" ] && echo "$RET_MSG_TEXT"
+	[ "$RET_MSG_TEXT" ] && echo "$RET_MSG_TEXT" | tee -a log
 	RET_LOWERED_MSG_TEXT=$(tr '[:upper:]' '[:lower:]' <<<"$RET_MSG_TEXT")
 
 	case $RET_LOWERED_MSG_TEXT in
 
-	'/start'*) start ;;
-	'.calc'*) calc ;;
-	'.iq'*) iq ;;
-	'.info'*) info ;;
-	'.magisk'*) magisk ;;
-	'.neofetch'*) neo_fetch ;;
-	'.replace'*) replace ;;
-	'.weath'*) weath ;;
+	'/start'*) start | tee -a log ;;
+	'.calc'*) calc  | tee -a log ;;
+	'.iq'*) iq  | tee -a log ;;
+	'.info'*) info  | tee -a log ;;
+	'.magisk'*) magisk  | tee -a log ;;
+	'.neofetch'*) neo_fetch  | tee -a log ;;
+	'.replace'*) replace  | tee -a log ;;
+	'.weath'*) weath  | tee -a log ;;
+	'.log'*) log ;;
 	esac
 
 	unset RET_MSG_TEXT RET_REPLIED_MSG_ID
