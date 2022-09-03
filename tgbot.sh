@@ -98,6 +98,15 @@ neo_fetch() {
 	NEOFETCH_OUTPUT=$(neofetch --stdout)
 	tg --editmsg "$RET_CHAT_ID" "$SENT_MSG_ID" "$NEOFETCH_OUTPUT"
 }
+replace() {
+	TRIMMED=${RET_MSG_TEXT#.replace }
+	echo "${RET_REPLIED_MSG_TEXT}" > sed.txt
+	echo "sed -i "s/${TRIMMED}/" sed.txt"
+	sed -i "s/${TRIMMED}/" sed.txt
+	text=$(cat sed.txt)
+	tg --replymsg "$RET_CHAT_ID" "$RET_REPLIED_MSG_ID" "${text}"
+	rm sed.txt
+}
 weath() {
 	TRIMMED=${RET_MSG_TEXT#.weath }
 	char=$(echo ${TRIMMED} | tr -d '\n' | wc -c)
@@ -171,6 +180,7 @@ while true; do
 	'.info'*) info ;;
 	'.magisk'*) magisk ;;
 	'.neofetch'*) neo_fetch ;;
+	'.replace'*) replace ;;
 	'.weath'*) weath ;;
 	esac
 
