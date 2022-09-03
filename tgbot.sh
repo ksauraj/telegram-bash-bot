@@ -149,24 +149,26 @@ weath() {
 		day_2=$(echo "$RESULT" | jq '.forecasts[].day' | sed '2!d')
 		day_3=$(echo "$RESULT" | jq '.forecasts[].day' | sed '3!d')
 		weather_1=$(echo "$RESULT" | jq '.forecasts[].text' | sed '1!d')
-		echo "Showing Results for ${city}, ${region}, ${country}" > weath.txt
-		echo "Timezone : ${timezone_id}" >> weath.txt
-		echo "Wind Speed : ${speed}km/h" >> weath.txt
-		echo "Humididty : ${humidity}%" >> weath.txt
-		echo "Visibility : ${visibility}%" >> weath.txt
-		echo "Pressure : ${pressure} Hg" >> weath.txt
-		echo "Day : ${day_1}" >> weath.txt
-		echo "Min Temperature : ${low_1}°C" >> weath.txt
-		echo "Min Temperature : ${high_1}°C" >> weath.txt
-		echo "Weather : ${weather_1}" >> weath.txt
-		echo "Sunrise : ${sunrise}" >> weath.txt
-		echo "Sunset : ${sunset}" >> weath.txt
-		echo "" >> weath.txt
-		echo "Forecasts for next 2 days" >> weath.txt
-		echo "" >> weath.txt
-		echo "            Min Temp.      Max Temp." >> weath.txt
-		echo "${day_2}       ${low_2}°C      ${high_2}°C" >> weath.txt
-		echo "${day_3}       ${low_3}°C      ${high_3}°C" >> weath.txt
+		{
+			echo "Showing Results for ${city}, ${region}, ${country}"
+			echo "Timezone : ${timezone_id}"
+			echo "Wind Speed : ${speed}km/h"
+			echo "Humididty : ${humidity}%"
+			echo "Visibility : ${visibility}%"
+			echo "Pressure : ${pressure} Hg"
+			echo "Day : ${day_1}"
+			echo "Min Temperature : ${low_1}°C"
+			echo "Min Temperature : ${high_1}°C"
+			echo "Weather : ${weather_1}"
+			echo "Sunrise : ${sunrise}"
+			echo "Sunset : ${sunset}"
+			echo ""
+			echo "Forecasts for next 2 days"
+			echo ""
+			echo "            Min Temp.      Max Temp."
+			echo "${day_2}       ${low_2}°C      ${high_2}°C"
+			echo "${day_3}       ${low_3}°C      ${high_3}°C"
+		} > weath.txt
 		sed -i s/\"//g weath.txt
 		text=$(cat weath.txt)
 		tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "${text}"

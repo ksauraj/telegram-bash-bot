@@ -25,10 +25,12 @@ if [ "$INTERACTIVE" == "True" ]; then
     read -rp "Enable Syntax Checking [True/False] : " SYNTAX_CHECK
 else
 	echo "Using Non-Interactive Mode."
-	echo "#!/bin/bash" >> .token.sh
-    echo TOKEN="$TOKEN" >> .token.sh
-    echo WEATH_API_KEY="$WEATH_API_KEY" >> .token.sh
-    echo BOT_OWNER_ID="$BOT_OWNER_ID" >> .token.sh
+	{
+		echo "#!/bin/bash"
+		echo TOKEN="$TOKEN"
+		echo WEATH_API_KEY="$WEATH_API_KEY"
+		echo BOT_OWNER_ID="$BOT_OWNER_ID"
+	} >> .token.sh
 fi
 
 
