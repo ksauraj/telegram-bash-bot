@@ -1,5 +1,10 @@
 #!/bin/bash
 source .token.sh
+
+if [ -z "$TOKEN" ]; then
+	echo "Cannot load token, exiting"
+fi
+
 API="https://api.telegram.org/bot$TOKEN"
 tg() {
 	case $1 in
