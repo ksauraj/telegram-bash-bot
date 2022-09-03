@@ -14,15 +14,15 @@ rm .token.sh
 touch .token.sh
 
 if [ "$INTERACTIVE" == "True" ]; then
-    read -p "Enter Bot Token : " TOKEN
+    read -rp "Enter Bot Token : " TOKEN
     echo "#!/bin/bash" >> .token.sh
     echo TOKEN="$TOKEN" >> .token.sh
-    read -p "Enter Owner ID : " BOT_OWNER_ID
+    read -rp "Enter Owner ID : " BOT_OWNER_ID
     echo BOT_OWNER_ID="$BOT_OWNER_ID" >> .token.sh
     pr_blue "Get API KEY for .weath from https://rapidapi.com/apishub/api/yahoo-weather5"
-    read -p "Enter API KEY FOR .weath :" WEATH_API_KEY
+    read -rp "Enter API KEY FOR .weath :" WEATH_API_KEY
     echo WEATH_API_KEY="$WEATH_API_KEY" >> .token.sh
-    read -p "Enable Syntax Checking [True/False] : " SYNTAX_CHECK
+    read -rp "Enable Syntax Checking [True/False] : " SYNTAX_CHECK
 else
 	echo "Using Non-Interactive Mode."
 	echo "#!/bin/bash" >> .token.sh
@@ -42,7 +42,7 @@ if [[ "$SYNTAX_CHECK" == "True" ]]; then
 		shellcheck -ax "$script"
 	done
 
-	read -n1 -t5 -p "Proceed with shfmt?[y/N]: " SHFMT_PROMPT
+	read -r -n1 -t5 -p "Proceed with shfmt?[y/N]: " SHFMT_PROMPT
 
 	[ "$SHFMT_PROMPT" = "y" ] && {
 		echo
@@ -55,7 +55,7 @@ else
 	pr_blue Skipping Syntax Checking.
 fi
 
-read -n1 -t20 -p "Start Bot? [y/N]: " START_BOT
+read -r -n1 -t20 -p "Start Bot? [y/N]: " START_BOT
 [ "$START_BOT" = "y" ] && {
 bash tgbot.sh
 }
