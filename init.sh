@@ -15,12 +15,14 @@ touch .token.sh
 
 if [ "$INTERACTIVE" == "True" ]; then
     read -rsp "Enter Bot Token : " TOKEN
+	echo
     echo "#!/bin/bash" >> .token.sh
     echo TOKEN="$TOKEN" >> .token.sh
     read -rp "Enter Owner ID : " BOT_OWNER_ID
     echo BOT_OWNER_ID="$BOT_OWNER_ID" >> .token.sh
     pr_blue "Get API KEY for .weath from https://rapidapi.com/apishub/api/yahoo-weather5"
     read -rsp "Enter API KEY FOR .weath :" WEATH_API_KEY
+	echo
     echo WEATH_API_KEY="$WEATH_API_KEY" >> .token.sh
     read -rp "Enable Syntax Checking [True/False] : " SYNTAX_CHECK
 else
