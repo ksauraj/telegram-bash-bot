@@ -127,6 +127,22 @@ tg() {
 		local MSG_ID=$2
 		curl "$API/unpinChatMessage" -d "chat_id=$CHAT_ID" -d "message_id=$MSG_ID"
 		;;
+	#--sendaudiofile -> File must have the correct MIME type (e.g., audio/mp3 )
+	--sendaudiofile)
+		shift
+		local CHAT_ID=$1
+		local AUDIO=$2
+		local CAPTION=$3
+		curl "$API/sendAudio" -F "chat_id=$CHAT_ID" -F "audio=@\"$AUDIO\"" -F "caption=$CAPTION"
+		;;
+	#--sendvoicefile -> The file must have the type audio/ogg and be no more than 1MB in size. 1-20MB voice notes will be sent as files.
+	--sendvoicefile)
+		shift
+		local CHAT_ID=$1
+		local VOICE=$2
+		local CAPTION=$3
+		curl "$API/sendVoice" -F "chat_id=$CHAT_ID" -F "audio=@\"$VOICE\"" -F "caption=$CAPTION"
+		;;
 	esac
 }
 
