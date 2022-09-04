@@ -11,7 +11,7 @@ echo "STARTING BOT"
 
 #Defining Function
 start() {
-    tg --replymarkdownv2msg "$RET_CHAT_ID" "$RET_MSG_ID" "A Simple bot from @Ksauraj and @Hakimi0804\."
+	tg --replymarkdownv2msg "$RET_CHAT_ID" "$RET_MSG_ID" "A Simple bot from @Ksauraj and @Hakimi0804\."
 }
 round() {
 	# $1 = Your number
@@ -30,14 +30,14 @@ all_replace() {
 	rm sed.txt
 }
 calc() {
-    TRIMMED="${RET_MSG_TEXT#.calc}"
-    CALCED=$(echo "$TRIMMED" | bc -l 2>&1)
-    if ! echo "$CALCED" | grep -q 'syntax error'; then
-        ROUNDED=$(round "$CALCED" 2)
-        tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "$ROUNDED"
-    else
-        tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "Bruh, did you just entered nonsense, cuz bc ain't happy"
-    fi
+	TRIMMED="${RET_MSG_TEXT#.calc}"
+	CALCED=$(echo "$TRIMMED" | bc -l 2>&1)
+	if ! echo "$CALCED" | grep -q 'syntax error'; then
+		ROUNDED=$(round "$CALCED" 2)
+		tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "$ROUNDED"
+	else
+		tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "Bruh, did you just entered nonsense, cuz bc ain't happy"
+	fi
 }
 iq() {
 	if [[ $USERNAME == 'Ksauraj' ]]; then
