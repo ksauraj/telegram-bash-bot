@@ -176,14 +176,14 @@ weath() {
 	fi
 }
 log() {
-	if [ "$MSGGER" == "$BOT_OWNER_ID" ]; then
+	if is_botowner; then
 		tg --replyfile "$RET_CHAT_ID" "$RET_MSG_ID" log
 	else
 		tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "Only owner can use this command."
 	fi
 }
 reset_log() {
-	if [ "$MSGGER" == "$BOT_OWNER_ID" ]; then
+	if is_botowner; then
 		rm log > /dev/null 2>&1
 		tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "Log handler reset succesfully."
 	else
