@@ -39,6 +39,17 @@ calc() {
 		tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "Bruh, did you just entered nonsense, cuz bc ain't happy"
 	fi
 }
+pfp() {
+	if [ "${RET_REPLIED_MSGGER_ID}" != "null" ]; then
+		tg --getuserpfp "${RET_REPLIED_MSGGER_ID}"
+		tg --downloadfile "$FILE_ID" "pfp.jpg"
+	else
+		tg --getuserpfp "${MSGGER}"
+		tg --downloadfile "$FILE_ID" "pfp.jpg"
+	fi
+	tg --replyfile "$RET_CHAT_ID" "$RET_MSG_ID" "pfp.jpg"
+	rm pfp.jpg
+}
 iq() {
 	if [[ $USERNAME == 'Ksauraj' ]]; then
 		iq=$(shuf -i 0-8 -n1)
@@ -206,6 +217,7 @@ while true; do
 	'.info'*) info  | tee -a log ;;
 	'.magisk'*) magisk  | tee -a log ;;
 	'.neofetch'*) neo_fetch  | tee -a log ;;
+	'.pfp'*) pfp | tee -a log ;;
 	'.replace'*) replace  | tee -a log ;;
 	'.weath'*) weath  | tee -a log ;;
 	'.log'*) log ;;
