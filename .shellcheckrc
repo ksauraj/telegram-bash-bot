@@ -1,0 +1,12 @@
+## shellcheck configs for tgbot
+# These warnings aren't important for this bot development
+disable=SC2034,SC2155,SC2076,SC1090,SC2185,SC2003
+# For VSCode ShellCheck extension. linter in init.sh already specified -x
+external-sources=true
+
+# SC2076: Remove quotes from right-hand side of =~ to match as a regex rather than literally. 
+# SC2034: VAR_NAME appears unused. Verify use (or export if used externally).
+# SC2155: Declare and assign separately to avoid masking return values.
+# SC1090: ShellCheck can't follow non-constant source. Use a directive to specify location.
+# SC2185: Some finds don't have a default path. Specify '.' explicitly.
+# SC2003: expr is antiquated. Consider rewriting this using $((..)), ${} or [[ ]].
