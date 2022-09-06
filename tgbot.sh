@@ -59,7 +59,7 @@ spam_protector() {
 			local word_escaped=$(echo "$word" | sed 's/[`~!@#$%^&*()-_=+{}\|;:",<.>/?'"'"']/\\&/g')
 
 			tg --delmsg "$RET_CHAT_ID" "$RET_MSG_ID" &
-			tg --ban "$RET_CHAT_ID" "$RET_MSG_ID" &
+			tg --ban "$RET_CHAT_ID" "$MSGGER" &
 			tg --sendmarkdownv2msg "$RET_CHAT_ID" "Banned user [$user_escaped_name](tg://user?id=$MSGGER)
 Blacklist match in message: \`$word_escaped\`"
 			return
