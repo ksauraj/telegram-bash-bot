@@ -9,6 +9,27 @@ source .token.sh
 echo "STARTING BOT"
 
 
+# Defining constants
+readonly sauraj_discussion_groupid=-1001470915975
+readonly msg_spam_words=(
+	crypto
+	bitcoin
+	forex
+	"t.me/joinchat/"
+	drеаmswhales
+	"meet you all"
+	"very happy"
+	"new comer"
+	invest
+	"t.me/+"
+	ᴛʀᴀᴅɪɴɢ
+	ɪɴᴠᴇsᴛ
+	trading
+	trade
+	usdt
+	btc
+)
+
 #Defining Function
 start() {
 	tg --replymarkdownv2msg "$RET_CHAT_ID" "$RET_MSG_ID" "A Simple bot from @Ksauraj and @Hakimi0804\."
@@ -19,6 +40,31 @@ round() {
 	FLOAT=$1
 	DECIMAL_POINT=$2
 	printf "%.${2:-$DECIMAL_POINT}f" "$FLOAT"
+}
+spam_protector() {
+	if [ -z "$RET_LOWERED_MSG_TEXT" ]; then
+		# Nothing to do
+		return
+	fi
+
+	# For now, this feature is restricted to Sauraj's discussion group
+	if [ "$RET_CHAT_ID" != "$sauraj_discussion_groupid" ]; then
+		echo "spam_protector: Not sauraj discussion group, skipped checking"
+		return
+	fi
+
+	for word in "${msg_spam_words[@]}"; do
+		if echo "$RET_LOWERED_MSG_TEXT" | grep -q "$word"; then
+			local user_escaped_name=$(echo "$FIRST_NAME" | sed 's/[`~!@#$%^&*()-_=+{}\|;:",<.>/?'"'"']/\\&/g')
+			local word_escaped=$(echo "$word" | sed 's/[`~!@#$%^&*()-_=+{}\|;:",<.>/?'"'"']/\\&/g')
+
+			tg --delmsg "$RET_CHAT_ID" "$RET_MSG_ID" &
+			tg --ban "$RET_CHAT_ID" "$RET_MSG_ID" &
+			tg --sendmarkdownv2msg "$RET_CHAT_ID" "Banned user [$user_escaped_name](tg://user?id=$MSGGER)
+Blacklist match in message: \`$word_escaped\`"
+			return
+		fi
+	done
 }
 all_replace() {
 	TRIMMED=${RET_MSG_TEXT#.all_replace }
@@ -223,6 +269,9 @@ while true; do
 	'.log'*) log ;;
 	'.reset_log'*) reset_log ;;
 	esac
+
+	# Always run this
+	spam_protector
 
 	unset RET_MSG_TEXT RET_REPLIED_MSG_ID
 done
