@@ -146,6 +146,19 @@ tg() {
 		FILE_ID=$(echo "$RESULT" | jq -r '.result.file_id')
 		FILE_PATH=$(echo "$RESULT" | jq -r '.result.file_path')
 		curl -s "https://api.telegram.org/file/bot$TOKEN/$FILE_PATH" -o $OUTPUT_FILE
+		;;
+	--ban)
+		shift
+		local CHAT_ID=$1
+		local USER_ID=$2
+		curl -s $API/banChatMember -F "chat_id=$CHAT_ID" -F "user_id=$USER_ID" | jq .
+		;;
+	--unban)
+		shift
+		local CHAT_ID=$1
+		local USER_ID=$2
+		curl -s $API/unbanChatMember -F "chat_id=$CHAT_ID" -F "user_id=$USER_ID" -F only_if_banned=true | jq .
+		;;
 	esac
 }
 
