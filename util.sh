@@ -3,6 +3,7 @@ source .token.sh
 
 if [ -z "$TOKEN" ]; then
 	echo "Cannot load token, exiting"
+	exit 1
 fi
 
 API="https://api.telegram.org/bot$TOKEN"
