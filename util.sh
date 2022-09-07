@@ -133,8 +133,8 @@ tg() {
 		local USER_ID=$1
 		local RESULT=$(curl -s "$API/getUserProfilePhotos" -d "user_id=$USER_ID" | jq . )
 		echo $RESULT
-		FILE_ID=$(echo "$RESULT" | jq -r '.result.photos[0][0].file_id')
-		FILE_PATH=$(echo "$RESULT" | jq -r '.result.photos[0][0].file_path')
+		FILE_ID=$(echo "$RESULT" | jq -r '.result.photos[0][-1].file_id')
+		FILE_PATH=$(echo "$RESULT" | jq -r '.result.photos[0][-1].file_path')
 		;;
 	# --downloadfile -> OUTPUT_FILE should be complete name of file including MIME type / extension.
 	--downloadfile)
