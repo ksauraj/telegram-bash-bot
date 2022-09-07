@@ -6,7 +6,12 @@ if [ -z "$TOKEN" ]; then
 	exit 1
 fi
 
-API="https://api.telegram.org/bot$TOKEN"
+readonly API="https://api.telegram.org/bot$TOKEN"
+
+echo "Getting my ID"
+readonly BOT_ID=$(curl -s $API/getMe | jq .result.id)
+echo "ID Acquired"
+
 tg() {
 	case $1 in
 	--editmsg | --editmarkdownv2msg)
