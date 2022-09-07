@@ -207,3 +207,36 @@ err_not_botowner() {
 	tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "You are not allowed to use this command."
 }
 
+# contains: returns true if an element is present in an array
+# (kang from fish)
+contains() {
+	local element=$1
+	shift
+	local array=("$@")
+
+	for elem in "${array[@]}"; do
+		if [ "$elem" = "$element" ]; then
+			return 0
+		fi
+	done
+
+	return 1
+}
+
+# is_admin: return 0 if all passed users are admin, otherwise return 1
+is_admin() {
+	local chat_id=$1
+	shift
+	local user_id=("$@")
+	local everyone_is_admin=true
+	local chat_admins=$(curl -s "$API/getChatAdministrators" -d "chat_id=$chat_id" | jq .result[].user.id)
+	chat_admins=($chat_admins) # Convert to an array
+	for user in "${user_id[@]}"; do
+		if ! contains "$user" "${chat_admins[@]}"; then
+			return 1 # This user is not admin, thus not everyone is admin
+		fi
+	done
+
+	# The loop finished successfully, which means everyone is admin
+	return 0
+}
