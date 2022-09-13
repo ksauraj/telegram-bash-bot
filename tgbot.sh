@@ -53,14 +53,13 @@ spam_protector() {
 		return
 	fi
 
+    if is_admin "$RET_CHAT_ID" "$MSGGER"; then
+        echo "spam_protector: User is admin, skipped checking"
+        return
+    fi
+
 	for word in "${msg_spam_words[@]}"; do
 		if echo "$RET_LOWERED_MSG_TEXT" | grep -q "$word"; then
-			if is_admin "$RET_CHAT_ID" "$MSGGER"; then
-				echo "spam_protector: Found match, but user is admin"
-				echo "                Skipping actions"
-				return
-			fi
-
 			local user_escaped_name=$(echo "$FIRST_NAME" | sed 's/[`~!@#$%^&*()-_=+{}\|;:",<.>/?'"'"']/\\&/g')
 			local word_escaped=$(echo "$word" | sed 's/[`~!@#$%^&*()-_=+{}\|;:",<.>/?'"'"']/\\&/g')
 
