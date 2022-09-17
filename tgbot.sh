@@ -3,7 +3,12 @@
 #Clear & Clean terminal before starting
 clear
 rm log  > /dev/null 2>&1
-## Sourcing stuffs (Our functions, extra functions and aliases, etc)
+
+# Source core utils
+source .token.sh
+source util.sh
+
+# Source functions
 source bot/all_replace.sh
 source bot/calc.sh
 source bot/info.sh
@@ -19,8 +24,6 @@ source bot/round.sh
 source bot/spam_protector.sh
 source bot/start.sh
 source bot/weath.sh
-source .token.sh
-source util.sh
 
 echo "STARTING BOT"
 
