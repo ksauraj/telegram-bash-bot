@@ -23,5 +23,5 @@ log() {
         -f|--fatal) logtype=F ;;
     esac
 
-    echo "$logtype: [$(date "$LOG_DATEFMT")] ($logtag) $*" | tee -a "$LOG_FNAME"
+    echo "$logtype: [$(date "$LOG_DATEFMT" | sed 's/......$//')] ($logtag) $*" | tee -a "$LOG_FNAME"
 }
