@@ -2,7 +2,6 @@
 
 #Clear & Clean terminal before starting
 clear
-rm log  > /dev/null 2>&1
 
 # Source core utils
 source .token.sh
@@ -13,7 +12,7 @@ source bot/all_replace.sh
 source bot/calc.sh
 source bot/info.sh
 source bot/iq.sh
-source bot/log.sh
+source bot/log_dump.sh
 source bot/magisk.sh
 source bot/neofetch.sh
 source bot/pfp.sh
@@ -25,7 +24,7 @@ source bot/spam_protector.sh
 source bot/start.sh
 source bot/weath.sh
 
-echo "STARTING BOT"
+log -i tgbot "STARTING BOT"
 
 
 # Defining constants
@@ -55,7 +54,7 @@ readonly msg_spam_words=(
 while true; do
 	# Refresh stuff
 	update
-	[ "$RET_MSG_TEXT" ] && echo "$RET_MSG_TEXT" | tee -a log
+	[ "$RET_MSG_TEXT" ] && log -v tgbot "Message received: $RET_MSG_TEXT" | tee -a log
 	RET_LOWERED_MSG_TEXT=$(tr '[:upper:]' '[:lower:]' <<<"$RET_MSG_TEXT")
 
 	case $RET_LOWERED_MSG_TEXT in
@@ -70,7 +69,7 @@ while true; do
 	'.pfp'*) pfp | tee -a log ;;
 	'.replace'*) replace  | tee -a log ;;
 	'.weath'*) weath  | tee -a log ;;
-	'.log'*) log ;;
+	'.log'*) log_dump ;;
 	'.reset_log'*) reset_log ;;
 	'.purge'*) purge ;;
 	esac

@@ -8,12 +8,12 @@ spam_protector() {
 
 	# For now, this feature is restricted to Sauraj's discussion group
 	if [ "$RET_CHAT_ID" != "$sauraj_discussion_groupid" ]; then
-		echo "spam_protector: Not sauraj discussion group, skipped checking"
+		log -v spam_protector "Not sauraj discussion group, skipped checking"
 		return
 	fi
 
     if is_admin "$RET_CHAT_ID" "$MSGGER"; then
-        echo "spam_protector: User is admin, skipped checking"
+        log -v spam_protector "User is admin, skipped checking"
         return
     fi
 

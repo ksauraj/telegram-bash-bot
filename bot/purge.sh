@@ -17,11 +17,11 @@ purge() {
 
 	tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "Purging"
 	local purge_start_time=$(date +%s.%N)
-	echo "purge ret rep $RET_REPLIED_MSG_ID"
-	echo "purge sent $SENT_MSG_ID"
-	echo "purge seq debug: $(seq "$RET_REPLIED_MSG_ID" $((SENT_MSG_ID - 1)))"
+	log -d purge "purge ret rep $RET_REPLIED_MSG_ID"
+	log -d purge "purge sent $SENT_MSG_ID"
+	log -d purge "purge seq debug: $(seq "$RET_REPLIED_MSG_ID" $((SENT_MSG_ID - 1)))"
 	for message_id in $(seq "$RET_REPLIED_MSG_ID" $((SENT_MSG_ID - 1))); do # -1 because we don't want to delete the "Purging" message
-		echo "Deleting message $message_id"
+		log -v purge "Deleting message $message_id"
 		tg --delmsg "$RET_CHAT_ID" "$message_id" &
 	done
 	wait # make sure all background jobs are finished

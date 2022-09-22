@@ -1,16 +1,17 @@
 #!/bin/bash
 source .token.sh
+source util.logging.sh
 
 if [ -z "$TOKEN" ]; then
-	echo "Cannot load token, exiting"
+	log -f util "Cannot load token, exiting"
 	exit 1
 fi
 
 readonly API="https://api.telegram.org/bot$TOKEN"
 
-echo "Getting my ID"
+log -i util "Getting my ID"
 readonly BOT_ID=$(curl -s $API/getMe | jq .result.id)
-echo "ID Acquired"
+log -i util "ID Acquired"
 
 tg() {
 	case $1 in
