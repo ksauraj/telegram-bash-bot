@@ -24,6 +24,7 @@ source bot/round.sh
 source bot/spam_protector.sh
 source bot/start.sh
 source bot/weath.sh
+source bot/bot_util.sh
 
 log -i tgbot "STARTING BOT"
 
@@ -73,6 +74,8 @@ while true; do
 	'.log'*) log_dump ;;
 	'.reset_log'*) reset_log ;;
 	'.purge'*) purge ;;
+	'.restart'*) bot_util::restart ;;
+	'.update'*) bot_util::update ;;
 	esac
 
 	# Always run this
