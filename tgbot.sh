@@ -2,6 +2,7 @@
 
 #Clear & Clean terminal before starting
 clear
+rm -f bot.log
 
 # Source core utils
 source .token.sh
