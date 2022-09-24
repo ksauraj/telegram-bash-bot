@@ -12,7 +12,7 @@ log() {
     local arg=$1
     local logtag=$2
     local logtype
-    shift
+    shift 2
 
     case $arg in
         -v|--verbose) logtype=V ;;
