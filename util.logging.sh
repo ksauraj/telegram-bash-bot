@@ -3,6 +3,18 @@
 readonly LOG_FNAME=bot.log
 readonly LOG_DATEFMT="+%d-%m-%y %H:%M:%S.%N"
 
+log::getLogType() {
+	case $1 in
+		-v|--verbose|verbose) echo V ;;
+		-d|--debug|debug) echo D ;;
+		-i|--info|info) echo I ;;
+		-w|--warn|warn) echo W ;;
+		-e|--error|error) echo E ;;
+		-f|--fatal|fatal) echo F ;;
+		*) return 1 ;;
+	esac
+}
+
 log() {
 	# Argument to pass:
 	# $1 - log type, ex. -d / --debug
@@ -14,14 +26,5 @@ log() {
 	local logtype
 	shift 2
 
-	case $arg in
-		-v|--verbose) logtype=V ;;
-		-d|--debug) logtype=D ;;
-		-i|--info) logtype=I ;;
-		-w|--warn) logtype=W ;;
-		-e|--error) logtype=E ;;
-		-f|--fatal) logtype=F ;;
-	esac
-
-	echo "$logtype: [$(date "$LOG_DATEFMT" | sed 's/......$//')] ($logtag) $*" | tee -a "$LOG_FNAME"
+	echo "$(log::getLogType $arg): [$(date "$LOG_DATEFMT" | sed 's/......$//')] ($logtag) $*" | tee -a "$LOG_FNAME"
 }
