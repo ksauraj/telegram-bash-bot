@@ -50,7 +50,6 @@ readonly msg_spam_words=(
     earn 
     investment
     financeexchange 
-
 )
 
 #Defining Function
@@ -79,6 +78,7 @@ while true; do
     '.purge'*) purge ;;
     '.restart'*) bot_util::restart ;;
     '.update'*) bot_util::update ;;
+    '.round'*) round | tee -a log;;
     esac
 
     # Always run this
