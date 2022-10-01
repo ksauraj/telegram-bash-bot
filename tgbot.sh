@@ -32,56 +32,56 @@ log -i tgbot "STARTING BOT"
 # Defining constants
 readonly sauraj_discussion_groupid=-1001470915975
 readonly msg_spam_words=(
-	crypto
-	bitcoin
-	forex
-	"t.me/joinchat/"
-	drеаmswhales
-	"meet you all"
-	"very happy"
-	"new comer"
-	invest
-	"t.me/+"
-	ᴛʀᴀᴅɪɴɢ
-	ɪɴᴠᴇsᴛ
-	trading
-	trade
-	usdt
-	btc
+    crypto
+    bitcoin
+    forex
+    "t.me/joinchat/"
+    drеаmswhales
+    "meet you all"
+    "very happy"
+    "new comer"
+    invest
+    "t.me/+"
+    ᴛʀᴀᴅɪɴɢ
+    ɪɴᴠᴇsᴛ
+    trading
+    trade
+    usdt
+    btc
 )
 
 #Defining Function
 
 ## While loop
 while true; do
-	# Refresh stuff
-	update
-	[ "$RET_MSG_TEXT" ] && log -v tgbot "Message received: $RET_MSG_TEXT" | tee -a log
-	RET_LOWERED_MSG_TEXT=$(tr '[:upper:]' '[:lower:]' <<<"$RET_MSG_TEXT")
+    # Refresh stuff
+    update
+    [ "$RET_MSG_TEXT" ] && log -v tgbot "Message received: $RET_MSG_TEXT" | tee -a log
+    RET_LOWERED_MSG_TEXT=$(tr '[:upper:]' '[:lower:]' <<<"$RET_MSG_TEXT")
 
-	case $RET_LOWERED_MSG_TEXT in
+    case $RET_LOWERED_MSG_TEXT in
 
-	'/start'*) start | tee -a log ;;
-	'.all_replace'*) all_replace  | tee -a log ;;
-	'.calc'*) calc  | tee -a log ;;
-	'.iq'*) iq  | tee -a log ;;
-	'.info'*) info  | tee -a log ;;
-	'.magisk'*) magisk  | tee -a log ;;
-	'.neofetch'*) neo_fetch  | tee -a log ;;
-	'.pfp'*) pfp | tee -a log ;;
-	'.replace'*) replace  | tee -a log ;;
-	'.weath'*) weath  | tee -a log ;;
-	'.log'*) log_dump ;;
-	'.reset_log'*) reset_log ;;
-	'.purge'*) purge ;;
-	'.restart'*) bot_util::restart ;;
-	'.update'*) bot_util::update ;;
-	esac
+    '/start'*) start | tee -a log ;;
+    '.all_replace'*) all_replace  | tee -a log ;;
+    '.calc'*) calc  | tee -a log ;;
+    '.iq'*) iq  | tee -a log ;;
+    '.info'*) info  | tee -a log ;;
+    '.magisk'*) magisk  | tee -a log ;;
+    '.neofetch'*) neo_fetch  | tee -a log ;;
+    '.pfp'*) pfp | tee -a log ;;
+    '.replace'*) replace  | tee -a log ;;
+    '.weath'*) weath  | tee -a log ;;
+    '.log'*) log_dump ;;
+    '.reset_log'*) reset_log ;;
+    '.purge'*) purge ;;
+    '.restart'*) bot_util::restart ;;
+    '.update'*) bot_util::update ;;
+    esac
 
-	# Always run this
-	spam_protector
+    # Always run this
+    spam_protector
 
-	unset RET_MSG_TEXT RET_REPLIED_MSG_ID
+    unset RET_MSG_TEXT RET_REPLIED_MSG_ID
 done
 
 
