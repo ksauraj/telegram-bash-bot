@@ -48,6 +48,9 @@ readonly msg_spam_words=(
     trade
     usdt
     btc
+    profit
+    invested
+    earn
 )
 
 #Defining Function
