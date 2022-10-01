@@ -37,9 +37,6 @@ readonly msg_spam_words=(
     forex
     "t.me/joinchat/"
     drеаmswhales
-    "meet you all"
-    "very happy"
-    "new comer"
     invest
     "t.me/+"
     ᴛʀᴀᴅɪɴɢ
