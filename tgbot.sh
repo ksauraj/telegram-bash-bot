@@ -47,7 +47,10 @@ readonly msg_spam_words=(
     btc
     profit
     invested
-    earn
+    earn 
+    investment
+    financeexchange 
+
 )
 
 #Defining Function
