@@ -72,13 +72,13 @@ while true; do
     '.neofetch'*) neo_fetch  | tee -a log ;;
     '.pfp'*) pfp | tee -a log ;;
     '.replace'*) replace  | tee -a log ;;
+    '.round'*) round_msg | tee -a log;;
     '.weath'*) weath  | tee -a log ;;
     '.log'*) log_dump ;;
     '.reset_log'*) reset_log ;;
     '.purge'*) purge ;;
     '.restart'*) bot_util::restart ;;
     '.update'*) bot_util::update ;;
-    '.round'*) round | tee -a log;;
     esac
 
     # Always run this
