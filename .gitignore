@@ -3,3 +3,4 @@ log
 util_test.sh
 bot.log
 *.bak
+*.kate-swp

@@ -23,6 +23,7 @@ source bot/reset_log.sh
 source bot/round.sh
 source bot/spam_protector.sh
 source bot/start.sh
+source bot/shuffle.sh
 source bot/weath.sh
 source bot/bot_util.sh
 
@@ -76,6 +77,7 @@ while true; do
     '.weath'*) weath  | tee -a log ;;
     '.log'*) log_dump ;;
     '.reset_log'*) reset_log ;;
+    '.shuffle'*) shuffle ;;
     '.purge'*) purge ;;
     '.restart'*) bot_util::restart ;;
     '.update'*) bot_util::update ;;
