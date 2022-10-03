@@ -1,9 +1,9 @@
 # Telegram Bash Bot
-- [About this project](https://noobyysauraj.github.io/telegram_bash_bot/#about)
-- [Available Telegram Methods](https://noobyysauraj.github.io/telegram_bash_bot/#available-telegram-methods)
-- [Stored Variables](https://noobyysauraj.github.io/telegram_bash_bot/#stored-variables)
-- [Deploying Bot](https://noobyysauraj.github.io/telegram_bash_bot/#deploying-bot)
-- [Contributions](https://noobyysauraj.github.io/telegram_bash_bot/#contributions)
+- [About this project](about.md)
+- [Available Telegram Methods](supported_methods.md)
+- [Stored Variables](variables.md)
+- [Deploying Bot](#deploying-bot)
+- [Contributions](#contributions)
 
 ## About
 A telegram bot written in bash, which can perform various functions over [Telegram Bot API](https://core.telegram.org/bots/api). You can take this project as a template for making your own bot.
