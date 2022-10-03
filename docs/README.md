@@ -1,26 +1,21 @@
 # Telegram Bash Bot
-> [About this project](https://noobyysauraj.github.io/telegram_bash_bot/#about)
-> [Available Telegram Methods](https://noobyysauraj.github.io/telegram_bash_bot/#available-telegram-methods)
-> [Stored Variables](https://noobyysauraj.github.io/telegram_bash_bot/#stored-variables)
-> [Deploying Bot](https://noobyysauraj.github.io/telegram_bash_bot/#deploying-bot)
-> [Contributions](https://noobyysauraj.github.io/telegram_bash_bot/#contributions)
+- [About this project](https://noobyysauraj.github.io/telegram_bash_bot/#about)
+- [Available Telegram Methods](https://noobyysauraj.github.io/telegram_bash_bot/#available-telegram-methods)
+- [Stored Variables](https://noobyysauraj.github.io/telegram_bash_bot/#stored-variables)
+- [Deploying Bot](https://noobyysauraj.github.io/telegram_bash_bot/#deploying-bot)
+- [Contributions](https://noobyysauraj.github.io/telegram_bash_bot/#contributions)
 
 ## About
 A telegram bot written in bash, which can perform various functions over [Telegram Bot API](https://core.telegram.org/bots/api). You can take this project as a template for making your own bot.
 > Uses https://core.telegram.org/bots/api for API calls.
+
 ### What is Telegram Bot ?
 Telegram bots are small programs that can embed in Telegram chats or public channels and perform a specific function. They can offer customized keyboards, produce cat memes on demand, or even accept payments and act as a digital storefront.
 
 ### How to make telegram bot?
 So we are here to help you. We are providing you this template for creating your own bot written in `bash`.
 
-#### Running bot (non-interactive)
-> Make sure your configs are stored in `.token` before running in non-interactive mode.
-```bash
-bash tgbot.sh
-```
-
-### How to Create Your own Bot using this ?
+### How to create your own Bot using this ?
 Well, this would be lot easier if you are using this template. Below are guides to get started.
 
 #### Adding your own features to bot.
@@ -30,7 +25,7 @@ All functions of bot are present in `bot/` which are sourced to tgbot.sh. By thi
 ### How to utilise `util.sh`?
 We made calling [Telegram Bot API](https://core.telegram.org/bots/api) simpler with help of `util.sh`. Like, You can send message by `tg --sendmsg "<chat id>"` and edit message by `tg --editmsg "<chat id>" "<message id>"`. More information [here](https://noobyysauraj.github.io/telegram_bash_bot/#available-telegram-methods).
 __We would be adding more Documentation on this topic in future__.
-> Above commands will only work when you have your `Bot token` stored in `.token` file of current directory.
+> Above commands will only work when you have your `Bot token` stored in `.token.sh` file of current directory.
 
 ### Adding more methods to call Telegram Bot API.
 
@@ -305,14 +300,21 @@ git clone https://github.com/noobyysauraj/telegram_bash_bot && cd telegram_bash_
 bash init.sh
 ```
 
+#### Running bot (non-interactive)
+> Make sure your configs are stored in `.token` before running in non-interactive mode.
+```bash
+bash tgbot.sh
+```
+
 ### Deploying on Railway
-Hopefully, We have Docker support _(Beta)_. So, it wont be pain to Deploy on [Railway](https://railway.app/).
+Hopefully, We have Docker support _(Beta)_. So, it won't be pain to Deploy on [Railway](https://railway.app/).
 - Just login.
 - Make a project.
 - Select this repo/your modified repo.
-- Add custom variable to your project. Check [here](https://docs.railway.app/develop/variables), how to add custom variable in railway.
+- Add [custom variable](https://noobyysauraj.github.io/telegram_bash_bot/#variables) to your project. Check [here](https://docs.railway.app/develop/variables), how to add custom variable in railway.
 
-#### Variable
+#### Variables
+Add these variables if you want to run the bot in __non-interactive__ mode.
 ```bash
 TOKEN="<Bot Token of your bot>"
 BOT_OWNER_ID="<Owner ID>"
