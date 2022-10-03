@@ -1,59 +1,45 @@
 # Telegram Bash Bot
+> [About this project](https://noobyysauraj.github.io/telegram_bash_bot/#about)
+> [Available Telegram Methods](https://noobyysauraj.github.io/telegram_bash_bot/#available-telegram-methods)
+> [Stored Variables](https://noobyysauraj.github.io/telegram_bash_bot/#stored-variables)
+> [Deploying Bot](https://noobyysauraj.github.io/telegram_bash_bot/#deploying-bot)
+> [Contributions](https://noobyysauraj.github.io/telegram_bash_bot/#contributions)
+
+## About
 A telegram bot written in bash, which can perform various functions over [Telegram Bot API](https://core.telegram.org/bots/api). You can take this project as a template for making your own bot.
 > Uses https://core.telegram.org/bots/api for API calls.
-
-## What is Telegram Bot ?
+### What is Telegram Bot ?
 Telegram bots are small programs that can embed in Telegram chats or public channels and perform a specific function. They can offer customized keyboards, produce cat memes on demand, or even accept payments and act as a digital storefront.
 
-## How to make telegram bot?
+### How to make telegram bot?
 So we are here to help you. We are providing you this template for creating your own bot written in `bash`.
 
-## How to run this bot?
-All you need is `bash` to be installed in your system with some other dependencies listed below. We even have Docker support _(Beta)_.
-
-> ###  Dependencies
->
-> - curl
-> - jq
-> - bc
->
-> Some other Dependencies too but mostly they are pre-installed on most systems. Full list will be updated soon.
-
-### Running bot (interactive mode)
-> Recquired first time for setting up your config.
-```bash
-bash init.sh
-```
-
-### Running bot (non-interactive)
+#### Running bot (non-interactive)
 > Make sure your configs are stored in `.token` before running in non-interactive mode.
 ```bash
 bash tgbot.sh
 ```
 
-# How to Create Your own Bot using this ?
+### How to Create Your own Bot using this ?
 Well, this would be lot easier if you are using this template. Below are guides to get started.
-***
-### Adding your own features to bot.
+
+#### Adding your own features to bot.
 
 All functions of bot are present in `bot/` which are sourced to tgbot.sh. By this way we make our code look simpler and more human readable.
 
 ### How to utilise `util.sh`?
-We made calling [Telegram Bot API](https://core.telegram.org/bots/api) simpler with help of `util.sh`. Like, You can send message by `tg --sendmsg "<chat id>"` and edit message by `tg --editmsg "<chat id>" "<message id>"`.
+We made calling [Telegram Bot API](https://core.telegram.org/bots/api) simpler with help of `util.sh`. Like, You can send message by `tg --sendmsg "<chat id>"` and edit message by `tg --editmsg "<chat id>" "<message id>"`. More information [here](https://noobyysauraj.github.io/telegram_bash_bot/#available-telegram-methods).
 __We would be adding more Documentation on this topic in future__.
 > Above commands will only work when you have your `Bot token` stored in `.token` file of current directory.
 
 ### Adding more methods to call Telegram Bot API.
 
 All functions related to [Telegram Bot API](https://core.telegram.org/bots/api) are present in  `util.sh`. You can add new methods following the current style of `variable names` to look it simpler.
-***
-## Contributions
-Feel free to contribute to any part of this project. _(Like Documentation, Adding more methods and feature and endless possiblities)_.
 
 
 ## Available Telegram Methods
-All these methods are defined in [util.sh](https://github.com/noobyysauraj/telegram_bash_bot/blob/master/util.sh). If you think some methods are missing and you can add them, please go ahead and don't forget to open a __pull request__ with the changes you made.
-> Commands listed below will only work when you have your `Bot token` stored in `.token` file of current directory.
+All these methods are defined in [util.sh](https://github.com/noobyysauraj/telegram_bash_bot/blob/master/util.sh). If you think some methods are missing and you can add them, please go ahead and don't forget to open a __pull request__ with the changes you made. [Extension of this part](https://noobyysauraj.github.io/telegram_bash_bot/#stored-variables).
+> Commands listed below will only work when you have your `Bot token` stored in `.token.sh` file of current directory.
 
 #### `--sendmsg`
 - Use this method to send text messages. On success, the sent Message is returned.
@@ -293,6 +279,48 @@ These are the variable stored by [Update Function](https://github.com/noobyysaur
 ##### STICKER_EMOJI
 
 - This Variable Store the __Name of the Sticker Pack__ the [Update Function](https://github.com/noobyysauraj/telegram_bash_bot/blob/cad053027990836c8d5730cc3f2f7a66dc912a8c/util.sh#L187) returned.
+
+## Deploying Bot
+All you need is `bash` to be installed in your system with some other dependencies listed below. We even have Docker support _(Beta)_.
+
+### Deploying Locally
+You can easily deploy this bot locally. It can run in termux too without much pain.
+####  Dependencies
+- git
+- curl
+- jq
+- bc
+- shuf
+- neofetch
+
+> Some other Dependencies too but mostly they are pre-installed on most systems. Full list will be updated soon.
+#### Clone this repo
+You need to clone this repo for further operations.
+```bash
+git clone https://github.com/noobyysauraj/telegram_bash_bot && cd telegram_bash_bot
+```
+#### Running bot (interactive mode)
+> Recquired first time for setting up your config.
+```bash
+bash init.sh
+```
+
+### Deploying on Railway
+Hopefully, We have Docker support _(Beta)_. So, it wont be pain to Deploy on [Railway](https://railway.app/).
+- Just login.
+- Make a project.
+- Select this repo/your modified repo.
+- Add custom variable to your project. Check [here](https://docs.railway.app/develop/variables), how to add custom variable in railway.
+
+#### Variable
+```bash
+TOKEN="<Bot Token of your bot>"
+BOT_OWNER_ID="<Owner ID>"
+WEATH_API_KEY="<Weather Api key>" #https://rapidapi.com/apishub/api/yahoo-weather5 (.weath won't work without this.)
+```
+
+### Contributions
+Feel free to contribute to any part of this project. _(Like Documentation, Adding more methods and feature and endless possiblities)_.
 
 > By @noobyysauraj and @Hakimi0804
 
