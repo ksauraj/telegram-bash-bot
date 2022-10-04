@@ -1,6 +1,11 @@
+### Adding more methods to call Telegram Bot API.
+
+All functions related to [Telegram Bot API](https://core.telegram.org/bots/api) are present in  `util.sh`. You can add new methods following the current style of `variable names` to look it simpler.
+
+
 ## Available Telegram Methods
-All these methods are defined in [util.sh](https://github.com/noobyysauraj/telegram_bash_bot/blob/master/util.sh). If you think some methods are missing and you can add them, please go ahead and don't forget to open a __pull request__ with the changes you made.
-> Commands listed below will only work when you have your `Bot token` stored in `.token` file of current directory.
+All these methods are defined in [util.sh](https://github.com/noobyysauraj/telegram-bash-bot/blob/master/util.sh). If you think some methods are missing and you can add them, please go ahead and don't forget to open a __pull request__ with the changes you made. [Extension of this part](https://noobyysauraj.github.io/telegram-bash-bot/#stored-variables).
+> Commands listed below will only work when you have your `Bot token` stored in `.token.sh` file of current directory.
 
 #### `--sendmsg`
 - Use this method to send text messages. On success, the sent Message is returned.
@@ -152,4 +157,3 @@ All these methods are defined in [util.sh](https://github.com/noobyysauraj/teleg
 > ```bash
 > tg --sendvoicefile "<CHAT ID>" "<PATH OF AUDIO FILE>" "<CAPTION (Optional)"
 > ```
-
