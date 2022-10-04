@@ -27,7 +27,7 @@ tg() {
             curl -s "$API/editMessageText" -d "chat_id=$CHAT_ID" -d "message_id=$MSG_ID" -d "text=$NEW_TEXT" | jq .
         fi
         ;;
-        --editmsgurl)
+    --editmsgurl)
         local PARAM=$1
         shift
         local CHAT_ID=$1
@@ -138,7 +138,7 @@ tg() {
         shift
         local USER_ID=$1
         local RESULT=$(curl -s "$API/getUserProfilePhotos" -d "user_id=$USER_ID" | jq . )
-        echo $RESULT
+        echo $RESULT | jq .
         FILE_ID=$(echo "$RESULT" | jq -r '.result.photos[0][-1].file_id')
         FILE_PATH=$(echo "$RESULT" | jq -r '.result.photos[0][-1].file_path')
         ;;
@@ -148,7 +148,7 @@ tg() {
         local FILE_ID=$1
         local OUTPUT_FILE=$2
         local RESULT=$(curl -s "$API/getFile" -d "file_id=$FILE_ID" | jq .)
-        echo $RESULT
+        echo $RESULT | jq .
         FILE_ID=$(echo "$RESULT" | jq -r '.result.file_id')
         FILE_PATH=$(echo "$RESULT" | jq -r '.result.file_path')
         curl -s "https://api.telegram.org/file/bot$TOKEN/$FILE_PATH" -o $OUTPUT_FILE
@@ -167,20 +167,20 @@ tg() {
         ;;
     #--sendaudiofile -> File must have the correct MIME type (e.g., audio/mp3 )
     --sendaudiofile)
-	shift
-	local CHAT_ID=$1
-	local AUDIO=$2
-	local CAPTION=$3
-	curl "$API/sendAudio" -F "chat_id=$CHAT_ID" -F "audio=@\"$AUDIO\"" -F "caption=$CAPTION"
-	;;
+        shift
+        local CHAT_ID=$1
+        local AUDIO=$2
+        local CAPTION=$3
+        curl "$API/sendAudio" -F "chat_id=$CHAT_ID" -F "audio=@\"$AUDIO\"" -F "caption=$CAPTION" | jq .
+        ;;
     #--sendvoicefile -> The file must have the type audio/ogg and be no more than 1MB in size. 1-20MB voice notes will be sent as files.
     --sendvoicefile)
-	shift
-	local CHAT_ID=$1
-	local VOICE=$2
-	local CAPTION=$3
-	curl "$API/sendVoice" -F "chat_id=$CHAT_ID" -F "audio=@\"$VOICE\"" -F "caption=$CAPTION"
-	;;
+        shift
+        local CHAT_ID=$1
+        local VOICE=$2
+        local CAPTION=$3
+        curl "$API/sendVoice" -F "chat_id=$CHAT_ID" -F "audio=@\"$VOICE\"" -F "caption=$CAPTION" | jq .
+        ;;
     esac
 }
 
