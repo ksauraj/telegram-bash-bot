@@ -171,6 +171,7 @@ tg() {
         local PHOTO=$2
         local CAPTION=$3
         local RESULT=$(curl -s "$API/sendPhoto" -F "chat_id=$CHAT_ID" -F "photo=@\"$PHOTO\"" -F "caption=$CAPTION" | jq . )
+        echo $RESULT | jq .
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
         ;;
     --replyphoto)
@@ -180,6 +181,7 @@ tg() {
         local PHOTO=$3
         local CAPTION=$4
         local RESULT=$(curl -s "$API/sendPhoto" -F "chat_id=$CHAT_ID" -F "reply_to_message_id=$MSG_ID" -F "photo=@\"$PHOTO\"" -F "caption=$CAPTION" | jq . )
+        echo $RESULT | jq .
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
         ;;
     #--sendaudiofile -> File must have the correct MIME type (e.g., audio/mp3 )
@@ -189,6 +191,7 @@ tg() {
         local AUDIO=$2
         local CAPTION=$3
         local RESULT=$(curl -s "$API/sendAudio" -F "chat_id=$CHAT_ID" -F "audio=@\"$AUDIO\"" -F "caption=$CAPTION" | jq . )
+        echo $RESULT | jq .
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
         ;;
     #--sendvoicefile -> The file must have the type audio/ogg and be no more than 1MB in size. 1-20MB voice notes will be sent as files.
@@ -198,6 +201,7 @@ tg() {
         local VOICE=$2
         local CAPTION=$3
         local RESULT=$(curl -s "$API/sendVoice" -F "chat_id=$CHAT_ID" -F "audio=@\"$VOICE\"" -F "caption=$CAPTION" | jq . )
+        echo $RESULT | jq .
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
         ;;
     --sendpreviewvideo)
@@ -208,6 +212,19 @@ tg() {
         local width=$(echo $resolution | cut -d 'x' -f 1)
         local height=$(echo $resolution | cut -d 'x' -f 2)
         local RESULT=$(curl -s $API/sendVideo -F "chat_id=$CHAT_ID" -F "video=@\"$VIDEO\"" -F "width=$width" -F "height=$height" | jq . )
+        echo $RESULT | jq .
+        SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
+        ;;
+    --replypreviewvideo)
+        shift
+        local CHAT_ID=$1
+        local MSG_ID=$2
+        local VIDEO=$3
+        local resolution=$(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 "$VIDEO" )
+        local width=$(echo $resolution | cut -d 'x' -f 1)
+        local height=$(echo $resolution | cut -d 'x' -f 2)
+        local RESULT=$(curl -s $API/sendVideo -F "chat_id=$CHAT_ID" -F "reply_to_message_id=$MSG_ID" -F "video=@\"$VIDEO\"" -F "width=$width" -F "height=$height" | jq . )
+        echo $RESULT | jq .
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
         ;;
     esac
