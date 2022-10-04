@@ -196,6 +196,16 @@ tg() {
         local CAPTION=$3
         curl -s "$API/sendVoice" -F "chat_id=$CHAT_ID" -F "audio=@\"$VOICE\"" -F "caption=$CAPTION" | jq .
         ;;
+    --sendpreviewvideo)
+        shift
+        local CHAT_ID=$1
+        local VIDEO=$2
+        local resolution=$(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 "$VIDEO" )
+        local width=$(echo $resolution | cut -d 'x' -f 1)
+        local height=$(echo $resolution | cut -d 'x' -f 2)
+        local RESULT=$(curl -s $API/sendVideo -F "chat_id=$CHAT_ID" -F "video=@\"$VIDEO\"" -F "width=$width]" -F "height=$height" | jq . )
+        SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
+        ;;
     esac
 }
 
