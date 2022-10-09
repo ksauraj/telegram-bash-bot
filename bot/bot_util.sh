@@ -18,6 +18,8 @@ bot_util::restart() {
 bot_util::update() {
     tg --replymsg "$RET_CHAT_ID" "$RET_MSG_ID" "Updating bot"
     log -i bot_util "Updating bot"
+    log -v bot_util "Adding safe directory to git"
+    git config --global --add safe.directory /app
     log -v bot_util "Running git pull"
     git pull || {
         git update-ref -d HEAD
