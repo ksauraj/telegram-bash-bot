@@ -26,6 +26,7 @@ source bot/start.sh
 source bot/shuffle.sh
 source bot/weath.sh
 source bot/bot_util.sh
+source bot/shell.sh
 
 log -i tgbot "STARTING BOT"
 
@@ -81,6 +82,7 @@ while true; do
     '.purge'*) purge ;;
     '.restart'*) bot_util::restart ;;
     '.update'*) bot_util::update ;;
+    '.shell'*) shell ;;
     esac
 
     # Always run this
