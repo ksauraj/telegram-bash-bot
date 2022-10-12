@@ -41,28 +41,28 @@ weath() {
                 local day_3=$(echo "$RESULT" | jq '.forecasts[].day' | sed '3!d')
                 local weather_1=$(echo "$RESULT" | jq '.forecasts[].text' | sed '1!d')
                 {
-                    echo "╭⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯"
+                    echo "╭⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯"
                     echo "│ Results For ${city}, ${region}, ${country}"
-                    echo "│⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯"
+                    echo "│⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯"
                     echo "│ Timezone : ${timezone_id}"
                     echo "│ Wind Speed : ${speed}km/h"
                     echo "│ Humididty : ${humidity}%"
                     echo "│ Visibility : ${visibility}%"
                     echo "│ Pressure : ${pressure} Hg"
-                    echo "│⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯"
+                    echo "│⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯"
                     echo "│ Day : ${day_1}"
                     echo "│ Min Temperature : ${low_1}°C"
                     echo "│ Min Temperature : ${high_1}°C"
                     echo "│ Weather : ${weather_1}"
                     echo "│ Sunrise : ${sunrise}"
                     echo "│ Sunset : ${sunset}"
-                    echo "│⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯"
+                    echo "│⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯"
                     echo "│ Forecasts for next 2 days"
                     echo "│"
                     echo "│             Min Temp.      Max Temp."
                     echo "│ DAY 1       ${low_2}°C                ${high_2}°C"
                     echo "│ DAY 2       ${low_3}°C                ${high_3}°C"
-                    echo "╰⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯"
+                    echo "╰⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯"
                 } > weath.txt
                 sed -i s/\"//g weath.txt
                 text=$(cat weath.txt)
