@@ -54,7 +54,8 @@ readonly msg_spam_words=(
     financeexchange 
 )
 
-#Defining Function
+# Initialize update
+update_init
 
 ## While loop
 while true; do
