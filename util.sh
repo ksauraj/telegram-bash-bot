@@ -231,7 +231,7 @@ tg() {
 }
 
 update() {
-    FETCH=$(curl -s "$API/getUpdates" -d "offset=$UPDATE_ID" -d "timeout=60" | jq '.result[]')
+    FETCH=$(curl -s "$API/getUpdates" -d "offset=$UPDATE_ID" -d "timeout=60" | jq '.result[]' 2>/dev/null)
     if [ -n "$FETCH" ]; then
         UPDATE_ID=$((UPDATE_ID + 1))
 
