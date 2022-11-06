@@ -15,7 +15,7 @@ log -i util "ID Acquired"
 
 tg() {
     case $1 in
-     --sendmsg)
+    --sendmsg)
         shift
         local CHAT_ID=$1
         local MSG=$2
@@ -27,7 +27,7 @@ tg() {
         shift
         local CHAT_ID=$1
         local MSG=$2
-        local RESULT=$(curl -s "$API/sendMessage" --data "chat_id=$CHAT_ID&text=$MSG&parse_mode=HTML&disable_web_page_preview=True" | jq .)
+        local RESULT=$(curl -s "$API/sendMessage" --form-string "chat_id=$CHAT_ID" --form-string "text=$MSG" --form-string "parse_mode=HTML" --form-string "disable_web_page_preview=True" | jq .)
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
         echo $RESULT | jq .
         ;;
@@ -56,7 +56,7 @@ tg() {
         local CHAT_ID=$1
         local MSG_ID=$2
         local MSG=$3
-        local RESULT=$(curl -s "$API/editMessageText" --data "chat_id=$CHAT_ID&message_id=$MSG_ID&text=$MSG&parse_mode=HTML&disable_web_page_preview=True" | jq .)
+        local RESULT=$(curl -s "$API/editMessageText" --form-string "chat_id=$CHAT_ID" --form-string "message_id=$MSG_ID" --form-string "text=$MSG" --form-string "parse_mode=HTML" --form-string "disable_web_page_preview=True" | jq .)
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
         echo $RESULT | jq .
         ;;
@@ -91,7 +91,7 @@ tg() {
         local CHAT_ID=$1
         local MSG_ID=$2
         local MSG=$3
-        local RESULT=$(curl -s "$API/sendMessage" --data "chat_id=$CHAT_ID&reply_to_message_id=$MSG_ID&text=$MSG&parse_mode=HTML&disable_web_page_preview=True" | jq .)
+        local RESULT=$(curl -s "$API/sendMessage" --form-string "chat_id=$CHAT_ID" --form-string "reply_to_message_id=$MSG_ID" --form-string "text=$MSG" --form-string "parse_mode=HTML" --form-string "disable_web_page_preview=True" | jq .)
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
         echo $RESULT | jq .
         ;;
