@@ -21,6 +21,15 @@ log() {
     # $2 - tag name (script/function name recommended)
     # $3 - Texts
 
+    # Warn if called with incorrect amount of argument passed
+    if [ "$#" -ne 3 ]; then
+        log -w log "Logger was called with incorrect amount of args:"
+        log -w log "arg1: $1"
+        log -w log "arg2: $2"
+        log -w log "arg3: $3"
+        #return 1
+    fi
+
     local arg=$1
     local logtag=$2
     local logtype
