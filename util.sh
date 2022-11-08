@@ -15,6 +15,22 @@ log -i util "ID Acquired"
 
 tg() {
     case $1 in
+    --sendmsg)
+        shift
+        local CHAT_ID=$1
+        local MSG=$2
+        local RESULT=$(curl -s "$API/sendMessage" -d "chat_id=$CHAT_ID" -d "text=$MSG")
+        SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
+        echo $RESULT | jq .
+        ;;
+    --sendmsghtml)
+        shift
+        local CHAT_ID=$1
+        local MSG=$2
+        local RESULT=$(curl -s "$API/sendMessage" --form-string "chat_id=$CHAT_ID" --form-string "text=$MSG" --form-string "parse_mode=HTML" --form-string "disable_web_page_preview=True" | jq .)
+        SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
+        echo $RESULT | jq .
+        ;;
     --editmsg | --editmarkdownv2msg)
         local PARAM=$1
         shift
@@ -35,12 +51,14 @@ tg() {
         local NEW_TEXT=$3
         curl -s "$API/editMessageText" -F "chat_id=$CHAT_ID" -F "message_id=$MSG_ID" -F "text=$NEW_TEXT" | jq .
         ;;
-    --sendmsg)
+    --editmsghtml)
         shift
         local CHAT_ID=$1
-        local MSG=$2
-        local RESULT=$(curl -s "$API/sendMessage" -d "chat_id=$CHAT_ID" -d "text=$MSG")
+        local MSG_ID=$2
+        local MSG=$3
+        local RESULT=$(curl -s "$API/editMessageText" --form-string "chat_id=$CHAT_ID" --form-string "message_id=$MSG_ID" --form-string "text=$MSG" --form-string "parse_mode=HTML" --form-string "disable_web_page_preview=True" | jq .)
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
+        echo $RESULT | jq .
         ;;
     --sendmarkdownv2msg)
         shift
@@ -48,6 +66,7 @@ tg() {
         local MSG=$2
         local RESULT=$(curl -s "$API/sendMessage" -d "chat_id=$CHAT_ID" -d "parse_mode=MarkdownV2" -d "text=$MSG")
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
+        echo $RESULT | jq .
         ;;
     --replymsg)
         shift
@@ -56,6 +75,7 @@ tg() {
         local MSG=$3
         local RESULT=$(curl -s "$API/sendMessage" -d "chat_id=$CHAT_ID" -d "reply_to_message_id=$MSG_ID" -d "text=$MSG" | jq .)
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
+        echo $RESULT | jq .
         ;;
     --replyfile)
         shift
@@ -64,14 +84,16 @@ tg() {
         local MSG=$3
         local RESULT=$(curl -s "$API/sendDocument" -F "chat_id=$CHAT_ID" -F "reply_to_message_id=$MSG_ID" -F "document=@\"$MSG\"" | jq .)
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
+        echo $RESULT | jq .
         ;;
     --replymsghtml)
         shift
         local CHAT_ID=$1
         local MSG_ID=$2
         local MSG=$3
-        local RESULT=$(curl -s "$API/sendMessage" --form "chat_id=$CHAT_ID" --form "reply_to_message_id=$MSG_ID" --form "text=$MSG" | jq .)
+        local RESULT=$(curl -s "$API/sendMessage" --form-string "chat_id=$CHAT_ID" --form-string "reply_to_message_id=$MSG_ID" --form-string "text=$MSG" --form-string "parse_mode=HTML" --form-string "disable_web_page_preview=True" | jq .)
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
+        echo $RESULT | jq .
         ;;
     --replymsgmarkdown)
         shift
@@ -80,6 +102,7 @@ tg() {
         local MSG=$3
         local RESULT=$(curl -s "$API/sendMessage" -d "chat_id=$CHAT_ID" -d "reply_to_message_id=$MSG_ID" --data-urlencode "text=$MSG" | jq .)
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
+        echo $RESULT | jq .
         ;;
     --replymarkdownv2msg)
         shift
@@ -88,7 +111,7 @@ tg() {
         local MSG=$3
         local RESULT=$(curl -s "$API/sendMessage" -d "chat_id=$CHAT_ID" -d "reply_to_message_id=$MSG_ID" -d "text=$MSG" -d "parse_mode=MarkdownV2" | jq .)
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
-        echo "$RESULT"
+        echo "$RESULT" | jq .
         ;;
     --delmsg)
         shift
