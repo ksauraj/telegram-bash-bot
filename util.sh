@@ -255,9 +255,10 @@ tg() {
         local CHAT_ID=$1
         local MSG=$2
         local BUTTON_TEXT=$3
-        local RESULT=$(curl -s -X POST "$API/sendMessage" -H "Content-Type: application/json" -d "{\"chat_id\":\"$CHAT_ID\", \"text\":\"$MSG\", \"reply_markup\": {\"inline_keyboard\": [[{\"text\":\"$BUTTON_TEXT\", \"callback_data\": \"Pressed\"}]]} }")
+        CALLBACK_DATA=$(echo $RANDOM | md5sum | head -c 20)
+        local RESULT=$(curl -s -X POST "$API/sendMessage" -H "Content-Type: application/json" -d "{\"chat_id\":\"$CHAT_ID\", \"text\":\"$MSG\", \"reply_markup\": {\"inline_keyboard\": [[{\"text\":\"$BUTTON_TEXT\", \"callback_data\": \"$CALLBACK_DATA\"}]]} }")
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result.message_id')
-        SENT_CHAT_ID=$(echo "$RESULT" | jq '.result.chat_id')
+        QUERY_SENT_CHAT_ID=$CHAT_ID
         QUERY_ID=$(echo "$RESULT" | jq '.result.message_id')
         echo $RESULT | jq .
         ;;

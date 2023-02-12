@@ -69,7 +69,7 @@ while true; do
 
     '/start'*) start | tee -a log ;;
     '.all_replace'*) all_replace  | tee -a log ;;
-    '.button'*) button  | tee -a log ;;
+    '.button'*) button & ;;
     '.calc'*) calc  | tee -a log ;;
     '.iq'*) iq  | tee -a log ;;
     '.info'*) info  | tee -a log ;;
