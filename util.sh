@@ -258,15 +258,38 @@ tg() {
         CALLBACK_DATA=$(echo $RANDOM | md5sum | head -c 20)
         local RESULT=$(curl -s -X POST "$API/sendMessage" -H "Content-Type: application/json" -d "{\"chat_id\":\"$CHAT_ID\", \"text\":\"$MSG\", \"reply_markup\": {\"inline_keyboard\": [[{\"text\":\"$BUTTON_TEXT\", \"callback_data\": \"$CALLBACK_DATA\"}]]} }")
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result.message_id')
+        SENT_TO_CHAT=$(echo "$RESULT" | jq '.result.chat.username')
         QUERY_SENT_CHAT_ID=$CHAT_ID
         QUERY_ID=$(echo "$RESULT" | jq '.result.message_id')
+        echo $RESULT | jq .
+        ;;
+    --replywithinlinebutton)
+        shift
+        local CHAT_ID=$1
+        local MSG_ID=$2
+        local MSG=$3
+        local BUTTON_TEXT=$4
+        CALLBACK_DATA=$(echo $RANDOM | md5sum | head -c 20)
+        local RESULT=$(curl -s -X POST "$API/sendMessage" -H "Content-Type: application/json" -d "{\"chat_id\":\"$CHAT_ID\", \"reply_to_message_id\":\"$MSG_ID\", \"text\":\"$MSG\", \"reply_markup\": {\"inline_keyboard\": [[{\"text\":\"$BUTTON_TEXT\", \"callback_data\": \"$CALLBACK_DATA\"}]]} }")
+        SENT_MSG_ID=$(echo "$RESULT" | jq '.result.message_id')
+        REPLIED_TO=$(echo "$RESULT" | jq -r '.result.reply_to_message.from.username')
+        QUERY_SENT_CHAT_ID=$CHAT_ID
+        QUERY_ID=$(echo "$RESULT" | jq '.result.message_id')
+        echo $RESULT | jq .
+        ;;
+    --answercallbackquery)
+        shift
+        local CHAT_ID=$1
+        local MSG=$2
+        local QUERY_ID=$3
+        local RESULT=$(curl -s "$API/answerCallbackQuery" -d "callback_query_id=$QUERY_ID" -d "chat_id=$CHAT_ID" -d "text=$MSG" -d "show_alert=true")
         echo $RESULT | jq .
         ;;
     esac
 }
 
 update() {
-    FETCH=$(curl -s "$API/getUpdates" -d "offset=$UPDATE_ID" -d "timeout=60" | jq '.result[]' 2>/dev/null)
+    FETCH=$(curl -s "$API/getUpdates" -d "offset=$UPDATE_ID" -d "timeout=60" | jq '.result[]')
     if [ -n "$FETCH" ]; then
         UPDATE_ID=$((UPDATE_ID + 1))
 
@@ -299,7 +322,7 @@ update() {
 
         # Callback Query
         CALL_BACK_QUERY_ID=$(echo "$FETCH" | jq -r '.callback_query.id')
-        CALL_BACK_QUERY_FROM=$(echo "$FETCH" | jq -r '.callback_query.from')
+        CALL_BACK_QUERY_USERNAME=$(echo "$FETCH" | jq -r '.callback_query.from.username')
         CALL_BACK_QUERY_DATA=$(echo "$FETCH" | jq -r '.callback_query.data')
         CALL_BACK_QUERY_MESSAGE=$(echo "$FETCH" | jq -r '.callback_query.message')
 

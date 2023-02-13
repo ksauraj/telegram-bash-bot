@@ -87,10 +87,6 @@ while true; do
     '.update'*) bot_util::update ;;
     '.shell'*) shell ;;
     esac
-
-    # Always run this
-    spam_protector
-
     unset RET_MSG_TEXT RET_REPLIED_MSG_ID
 done
 
