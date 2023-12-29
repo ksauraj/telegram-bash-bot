@@ -262,6 +262,7 @@ update() {
         RET_MSG_ID=$(echo "$FETCH" | jq '.message.message_id')
         RET_CHAT_ID=$(echo "$FETCH" | jq '.message.chat.id')
         RET_CHAT_TYPE=$(echo "$FETCH" | jq -r '.message.chat.type')
+        RET_CHAT_TITLE=$(echo "$FETCH" | jq -r '.message.chat.title')
         MSGGER=$(echo "$FETCH" | jq '.message.from.id')
         RET_FILE_ID=$(echo "$FETCH" | jq -r '.message.document.file_id')
 

@@ -63,6 +63,8 @@ while true; do
     # Refresh stuff
     update
     [ "$RET_MSG_TEXT" ] && log -v tgbot "Message received: $RET_MSG_TEXT" | tee -a log
+    [ "$RET_MSG_TEXT" ] && log -v tgbot " -> Chat title: $RET_CHAT_TITLE" | tee -a log &
+    [ "$RET_MSG_TEXT" ] && log -v tgbot " -> Chat id: $RET_CHAT_ID" | tee -a log &
     RET_LOWERED_MSG_TEXT=$(tr '[:upper:]' '[:lower:]' <<<"$RET_MSG_TEXT")
 
     case $RET_LOWERED_MSG_TEXT in
