@@ -1,2 +1,6 @@
+site_name: Telegram Bash Bot Documentation
+site_url: https://ksauraj.github.io/telegram-bash-bot
+site_description: Developer documentation for Telegram Bash Bot.
+
 theme:
   name: material
