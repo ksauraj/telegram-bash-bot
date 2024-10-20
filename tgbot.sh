@@ -10,6 +10,7 @@ source util.sh
 
 # Source functions
 source bot/all_replace.sh
+source bot/button.sh
 source bot/calc.sh
 source bot/choice.sh
 source bot/info.sh
@@ -71,6 +72,7 @@ while true; do
 
     '/start'*) start | tee -a log ;;
     '.all_replace'*) all_replace  | tee -a log ;;
+    '.button'*) button & ;;
     '.calc'*) calc  | tee -a log ;;
     '.choice'*) choice  | tee -a log ;;
     '.iq'*) iq  | tee -a log ;;

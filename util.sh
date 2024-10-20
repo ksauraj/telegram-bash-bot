@@ -250,6 +250,18 @@ tg() {
         echo $RESULT | jq .
         SENT_MSG_ID=$(echo "$RESULT" | jq '.result | .message_id')
         ;;
+    --sendwithinlinebutton)
+        shift
+        local CHAT_ID=$1
+        local MSG=$2
+        local BUTTON_TEXT=$3
+        CALLBACK_DATA=$(echo $RANDOM | md5sum | head -c 20)
+        local RESULT=$(curl -s -X POST "$API/sendMessage" -H "Content-Type: application/json" -d "{\"chat_id\":\"$CHAT_ID\", \"text\":\"$MSG\", \"reply_markup\": {\"inline_keyboard\": [[{\"text\":\"$BUTTON_TEXT\", \"callback_data\": \"$CALLBACK_DATA\"}]]} }")
+        SENT_MSG_ID=$(echo "$RESULT" | jq '.result.message_id')
+        QUERY_SENT_CHAT_ID=$CHAT_ID
+        QUERY_ID=$(echo "$RESULT" | jq '.result.message_id')
+        echo $RESULT | jq .
+        ;;
     esac
 }
 
@@ -285,6 +297,13 @@ update() {
         STICKER_EMOJI=$(echo "$FETCH" | jq -r '.message.sticker.emoji')
         STICKER_FILE_ID=$(echo "$FETCH" | jq -r '.message.sticker.file_id')
         STICKER_PACK_NAME=$(echo "$FETCH" | jq -r '.message.sticker.set_name')
+
+        # Callback Query
+        CALL_BACK_QUERY_ID=$(echo "$FETCH" | jq -r '.callback_query.id')
+        CALL_BACK_QUERY_FROM=$(echo "$FETCH" | jq -r '.callback_query.from')
+        CALL_BACK_QUERY_DATA=$(echo "$FETCH" | jq -r '.callback_query.data')
+        CALL_BACK_QUERY_MESSAGE=$(echo "$FETCH" | jq -r '.callback_query.message')
+
     fi
 }
 
