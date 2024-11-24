@@ -1,0 +1,1013 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Developer documentation for Telegram Bash Bot.">
+      
+      
+      
+        <link rel="canonical" href="https://ksauraj.github.io/telegram-bash-bot/variables/">
+      
+      
+        <link rel="prev" href="../supported_methods/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>Variables - Telegram Bash Bot Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#stored-variables" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Telegram Bash Bot Documentation" class="md-header__button md-logo" aria-label="Telegram Bash Bot Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Telegram Bash Bot Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Variables
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Telegram Bash Bot Documentation" class="md-nav__button md-logo" aria-label="Telegram Bash Bot Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Telegram Bash Bot Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Telegram Bash Bot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploying/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploying
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../supported_methods/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Supported methods
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Variables
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Variables
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stored-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stored Variables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stored Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-all-different-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. All DIfferent IDs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. All DIfferent IDs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ret_msg_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_MSG_ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_chat_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_CHAT_ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_chat_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_CHAT_TYPE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#msgger" class="md-nav__link">
+    <span class="md-ellipsis">
+      MSGGER
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_file_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_FILE_ID
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-all-different-strings" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. All DIfferent Strings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. All DIfferent Strings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ret_msg_text" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_MSG_TEXT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#first_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      FIRST_NAME
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#last_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      LAST_NAME
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#username" class="md-nav__link">
+    <span class="md-ellipsis">
+      USERNAME
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-replies" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Replies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Replies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ret_replied_msg_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_REPLIED_MSG_ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_replied_msgger_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_REPLIED_MSGGER_ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_replied_msgger_first_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_REPLIED_MSGGER_FIRST_NAME
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_replied_msgger_last_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_REPLIED_MSGGER_LAST_NAME
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_replied_msgger_username" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_REPLIED_MSGGER_USERNAME
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_replied_msg_text" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_REPLIED_MSG_TEXT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_replied_file_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_REPLIED_FILE_ID
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-stickers" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Stickers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Stickers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sticker_emoji" class="md-nav__link">
+    <span class="md-ellipsis">
+      STICKER_EMOJI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sticker_file_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      STICKER_FILE_ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sticker_emoji_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      STICKER_EMOJI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stored-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stored Variables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stored Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-all-different-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. All DIfferent IDs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. All DIfferent IDs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ret_msg_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_MSG_ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_chat_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_CHAT_ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_chat_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_CHAT_TYPE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#msgger" class="md-nav__link">
+    <span class="md-ellipsis">
+      MSGGER
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_file_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_FILE_ID
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-all-different-strings" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. All DIfferent Strings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. All DIfferent Strings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ret_msg_text" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_MSG_TEXT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#first_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      FIRST_NAME
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#last_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      LAST_NAME
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#username" class="md-nav__link">
+    <span class="md-ellipsis">
+      USERNAME
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-replies" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Replies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Replies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ret_replied_msg_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_REPLIED_MSG_ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_replied_msgger_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_REPLIED_MSGGER_ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_replied_msgger_first_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_REPLIED_MSGGER_FIRST_NAME
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_replied_msgger_last_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_REPLIED_MSGGER_LAST_NAME
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_replied_msgger_username" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_REPLIED_MSGGER_USERNAME
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_replied_msg_text" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_REPLIED_MSG_TEXT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ret_replied_file_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      RET_REPLIED_FILE_ID
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-stickers" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Stickers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Stickers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sticker_emoji" class="md-nav__link">
+    <span class="md-ellipsis">
+      STICKER_EMOJI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sticker_file_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      STICKER_FILE_ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sticker_emoji_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      STICKER_EMOJI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Variables</h1>
+
+<h2 id="stored-variables">Stored Variables</h2>
+<p>These are the variable stored by <a href="https://github.com/noobyysauraj/telegram-bash-bot/blob/cad053027990836c8d5730cc3f2f7a66dc912a8c/util.sh#L187">Update Function</a>, which is used to get Updates from the bot in the present chats. So, we store all important variable returned by <a href="https://core.telegram.org/bots/api#getting-updates">Telegram Bot API Get Updates</a>.</p>
+<h3 id="1-all-different-ids">1. All DIfferent IDs</h3>
+<h5 id="ret_msg_id">RET_MSG_ID</h5>
+<ul>
+<li>This Variable Store the <strong>Message ID</strong> of the message the <a href="https://github.com/noobyysauraj/telegram-bash-bot/blob/cad053027990836c8d5730cc3f2f7a66dc912a8c/util.sh#L187">Update Function</a> returned.</li>
+</ul>
+<h5 id="ret_chat_id">RET_CHAT_ID</h5>
+<ul>
+<li>This Variable Store the Chat ID of the Chat the <a href="https://github.com/noobyysauraj/telegram-bash-bot/blob/cad053027990836c8d5730cc3f2f7a66dc912a8c/util.sh#L187">Update Function</a> returned.</li>
+</ul>
+<h5 id="ret_chat_type">RET_CHAT_TYPE</h5>
+<ul>
+<li>This Variable Store the <strong>Chat Type</strong> of the Chat the <a href="https://github.com/noobyysauraj/telegram-bash-bot/blob/cad053027990836c8d5730cc3f2f7a66dc912a8c/util.sh#L187">Update Function</a> returned.</li>
+</ul>
+<h5 id="msgger">MSGGER</h5>
+<ul>
+<li>This Variable Store the <strong>User ID</strong> of the Messager the <a href="https://github.com/noobyysauraj/telegram-bash-bot/blob/cad053027990836c8d5730cc3f2f7a66dc912a8c/util.sh#L187">Update Function</a> returned.</li>
+</ul>
+<h5 id="ret_file_id">RET_FILE_ID</h5>
+<ul>
+<li>This Variable Store the <strong>File ID</strong> of the File the <a href="https://github.com/noobyysauraj/telegram-bash-bot/blob/cad053027990836c8d5730cc3f2f7a66dc912a8c/util.sh#L187">Update Function</a> returned.</li>
+</ul>
+<h3 id="2-all-different-strings">2. All DIfferent Strings</h3>
+<h5 id="ret_msg_text">RET_MSG_TEXT</h5>
+<ul>
+<li>This Variable Store the <strong>text</strong> of the Message the <a href="https://github.com/noobyysauraj/telegram-bash-bot/blob/cad053027990836c8d5730cc3f2f7a66dc912a8c/util.sh#L187">Update Function</a> returned.</li>
+</ul>
+<h5 id="first_name">FIRST_NAME</h5>
+<ul>
+<li>This Variable Store the <strong>First Name</strong> of the Messager the <a href="https://github.com/noobyysauraj/telegram-bash-bot/blob/cad053027990836c8d5730cc3f2f7a66dc912a8c/util.sh#L187">Update Function</a> returned.</li>
+</ul>
+<h5 id="last_name">LAST_NAME</h5>
+<ul>
+<li>This Variable Store the <strong>Last Name</strong> of the Messager the <a href="https://github.com/noobyysauraj/telegram-bash-bot/blob/cad053027990836c8d5730cc3f2f7a66dc912a8c/util.sh#L187">Update Function</a> returned.</li>
+</ul>
+<h5 id="username">USERNAME</h5>
+<ul>
+<li>This Variable Store the <strong>Username</strong> of the Messager the <a href="https://github.com/noobyysauraj/telegram-bash-bot/blob/cad053027990836c8d5730cc3f2f7a66dc912a8c/util.sh#L187">Update Function</a> returned.</li>
+</ul>
+<h3 id="3-replies">3. Replies</h3>
+<h5 id="ret_replied_msg_id">RET_REPLIED_MSG_ID</h5>
+<ul>
+<li>This Variable Store the <strong>Message ID</strong> of the message to which the current message have been replied to.</li>
+</ul>
+<h5 id="ret_replied_msgger_id">RET_REPLIED_MSGGER_ID</h5>
+<ul>
+<li>This Variable Store the <strong>User ID</strong> of the User to which the current message have been replied to.</li>
+</ul>
+<h5 id="ret_replied_msgger_first_name">RET_REPLIED_MSGGER_FIRST_NAME</h5>
+<ul>
+<li>This Variable Store the <strong>Fisrt Name</strong> of the Messager to which the current message have been replied to.</li>
+</ul>
+<h5 id="ret_replied_msgger_last_name">RET_REPLIED_MSGGER_LAST_NAME</h5>
+<ul>
+<li>This Variable Store the <strong>Last Name</strong> of the Messager to which the current message have been replied to.</li>
+</ul>
+<h5 id="ret_replied_msgger_username">RET_REPLIED_MSGGER_USERNAME</h5>
+<ul>
+<li>This Variable Store the <strong>Username</strong> of the messager to which the current message have been replied to.</li>
+</ul>
+<h5 id="ret_replied_msg_text">RET_REPLIED_MSG_TEXT</h5>
+<ul>
+<li>This Variable Store the <strong>Text</strong> of the message to which the current message have been replied to.</li>
+</ul>
+<h5 id="ret_replied_file_id">RET_REPLIED_FILE_ID</h5>
+<ul>
+<li>This Variable Store the <strong>File ID</strong> of the File to which the current message have been replied to.</li>
+</ul>
+<h3 id="4-stickers">4. Stickers</h3>
+<h5 id="sticker_emoji">STICKER_EMOJI</h5>
+<ul>
+<li>This Variable Store the <strong>Emoji</strong> of the Sticker the <a href="https://github.com/noobyysauraj/telegram-bash-bot/blob/cad053027990836c8d5730cc3f2f7a66dc912a8c/util.sh#L187">Update Function</a> returned.</li>
+</ul>
+<h5 id="sticker_file_id">STICKER_FILE_ID</h5>
+<ul>
+<li>This Variable Store the <strong>File ID</strong> of the Sticker the <a href="https://github.com/noobyysauraj/telegram-bash-bot/blob/cad053027990836c8d5730cc3f2f7a66dc912a8c/util.sh#L187">Update Function</a> returned.</li>
+</ul>
+<h5 id="sticker_emoji_1">STICKER_EMOJI</h5>
+<ul>
+<li>This Variable Store the <strong>Name of the Sticker Pack</strong> the <a href="https://github.com/noobyysauraj/telegram-bash-bot/blob/cad053027990836c8d5730cc3f2f7a66dc912a8c/util.sh#L187">Update Function</a> returned.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
