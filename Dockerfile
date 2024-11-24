@@ -8,6 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
+    python3-venv \
     jq \
     aria2 \
     pv \
@@ -19,9 +20,10 @@ RUN apt-get update && apt-get install -y \
     ffmpeg \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Python packages
-RUN python3 -m pip install --upgrade pip setuptools wheel \
-    && pip install telethon speedtest-cli pycryptodome docopt
+# Create a virtual environment and install Python packages inside it.
+RUN python3 -m venv /app/venv
+RUN /app/venv/bin/pip install --upgrade pip setuptools wheel \
+    && /app/venv/bin/pip install telethon speedtest-cli pycryptodome docopt
 
 # Set working directory
 WORKDIR /app
@@ -31,4 +33,4 @@ RUN chmod 777 /app
 COPY . .
 
 # Default command
-CMD ["bash", "tgbot.sh"]
+CMD ["bash","tgbot.sh"]
